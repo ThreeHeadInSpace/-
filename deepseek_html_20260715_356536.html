@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTA VI – коллекционный набор открыток</title>
+  <!-- Google Font для атмосферы -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:opsz,wght@14..32,400;14..32,600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0d10;
+      background-image: radial-gradient(circle at 20% 30%, #1a1f2a 0%, #080a0d 90%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Inter', sans-serif;
+      padding: 2rem 1rem;
+    }
+
+    .card {
+      max-width: 1000px;
+      width: 100%;
+      background: rgba(18, 22, 28, 0.85);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 215, 0, 0.25);
+      border-radius: 48px 48px 32px 32px;
+      padding: 2.5rem 2.2rem;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 215, 0, 0.1) inset;
+      transition: all 0.2s;
+      color: #f0f2f5;
+    }
+
+    /* GTA VI стилизация */
+    .badge {
+      display: inline-block;
+      background: #e6b91e;
+      color: #0b0d10;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ffd966;
+      box-shadow: 0 0 12px rgba(230, 185, 30, 0.3);
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 2.6rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #f5e56b, #d9a71c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 15px rgba(217, 167, 28, 0.3);
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #afb9c9;
+      border-left: 3px solid #e6b91e;
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.02em;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0 1.5rem;
+    }
+
+    .info-panel {
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 28px;
+      padding: 1.8rem 1.8rem 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .info-panel h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e6b91e;
+      margin-bottom: 1.2rem;
+      border-bottom: 1px dashed rgba(230, 185, 30, 0.3);
+      padding-bottom: 0.6rem;
+    }
+
+    .info-panel ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .info-panel li {
+      padding: 0.6rem 0 0.6rem 1.8rem;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="%23e6b91e" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>') left center no-repeat;
+      background-size: 1.2rem;
+      margin-bottom: 0.2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+      color: #d6dee9;
+      font-weight: 400;
+      font-size: 0.95rem;
+    }
+
+    .info-panel li:last-child {
+      border-bottom: none;
+    }
+
+    .highlight-box {
+      background: rgba(230, 185, 30, 0.04);
+      border-radius: 24px;
+      padding: 1.5rem 1.8rem;
+      border: 1px solid rgba(230, 185, 30, 0.15);
+      margin: 1.5rem 0 2rem;
+      backdrop-filter: blur(2px);
+    }
+
+    .highlight-box p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #d0d9e8;
+    }
+
+    .highlight-box strong {
+      color: #f5e56b;
+      font-weight: 600;
+    }
+
+    .feature-tag {
+      display: inline-block;
+      background: #1e232c;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #b9c3d4;
+      border: 1px solid #2f3642;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .cta-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.8rem;
+      border-top: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .cta-text {
+      font-size: 0.9rem;
+      color: #9aa6b9;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .cta-text span {
+      background: #1e232c;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid #2f3642;
+      font-weight: 600;
+      color: #e6b91e;
+      font-size: 0.8rem;
+    }
+
+    .btn {
+      background: transparent;
+      border: 1px solid #e6b91e;
+      color: #f5e56b;
+      font-weight: 600;
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.85rem;
+      cursor: default;
+      transition: all 0.25s;
+      box-shadow: 0 0 15px rgba(230, 185, 30, 0.1);
+      font-family: 'Inter', sans-serif;
+      background: rgba(230, 185, 30, 0.03);
+      backdrop-filter: blur(2px);
+    }
+
+    .btn:hover {
+      background: #e6b91e;
+      color: #0b0d10;
+      box-shadow: 0 0 30px rgba(230, 185, 30, 0.3);
+      border-color: #f5d742;
+      transform: scale(1.02);
+    }
+
+    .footer-note {
+      font-size: 0.75rem;
+      color: #6a768b;
+      margin-top: 1.8rem;
+      text-align: center;
+      letter-spacing: 0.03em;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      padding-top: 1.5rem;
+    }
+
+    .footer-note strong {
+      color: #b9c3d4;
+      font-weight: 400;
+    }
+
+    /* адаптив */
+    @media (max-width: 720px) {
+      .card {
+        padding: 1.8rem 1.2rem;
+        border-radius: 32px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .grid-2col {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .cta-section {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.9rem 1rem;
+      }
+      .info-panel {
+        padding: 1.5rem 1.2rem;
+      }
+      .badge {
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      .subhead {
+        font-size: 0.85rem;
+        padding-left: 0.7rem;
+      }
+      .highlight-box {
+        padding: 1rem 1.2rem;
+      }
+    }
+
+    /* Декоративный элемент – "винил" */
+    .vinyl-decoration {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0 0.4rem;
+    }
+
+    .vinyl-decoration span {
+      width: 8px;
+      height: 8px;
+      background: #e6b91e;
+      border-radius: 50%;
+      opacity: 0.2;
+    }
+
+    /* иконка в заголовке */
+    .icon-gta {
+      display: inline-block;
+      font-size: 1.8rem;
+      line-height: 1;
+      margin-right: 0.25rem;
+      filter: drop-shadow(0 0 8px #e6b91e55);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    
+    <!-- Badge -->
+    <div class="badge">⚡ Официальный коллекционный набор</div>
+    
+    <!-- Заголовок -->
+    <h1>
+      <span class="icon-gta">◈</span> GTA VI <br style="display: none;" class="mobile-break"> 
+      <span style="font-size: 0.7em; letter-spacing: 0.02em; background: none; -webkit-background-clip: unset; background-clip: unset; color: #f0f2f5; text-shadow: none;">открытки</span>
+    </h1>
+    <div class="subhead">
+      Лимитированный набор • 6 двусторонних открыток + крафтовые конверты
+    </div>
+
+    <!-- Основная сетка: комплектация + особенности -->
+    <div class="grid-2col">
+      <!-- Левая колонка: комплектация -->
+      <div class="info-panel">
+        <h2>📦 Комплектация</h2>
+        <ul>
+          <li><strong>6</strong> коллекционных открыток 10×15 см</li>
+          <li><strong>6</strong> крафтовых конвертов</li>
+          <li>Двусторонняя печать с индивидуальным оформлением обратной стороны</li>
+          <li>Плотный картон 300 г/м²</li>
+        </ul>
+        <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.3rem;">
+          <span class="feature-tag">✦ коллекционный</span>
+          <span class="feature-tag">✦ подарок</span>
+          <span class="feature-tag">✦ декор</span>
+          <span class="feature-tag">✦ почтовая</span>
+        </div>
+      </div>
+
+      <!-- Правая колонка: рекомендации + важно -->
+      <div class="info-panel">
+        <h2>💡 Рекомендации</h2>
+        <ul>
+          <li>Используйте как подарок, элемент декора или сувенир</li>
+          <li>Можно отправлять как настоящую почтовую открытку</li>
+          <li>Хранить в сухом месте, избегать прямых солнечных лучей</li>
+          <li>Бережное обращение сохранит качество печати</li>
+        </ul>
+        <div style="margin-top: 1rem; background: rgba(230,185,30,0.05); padding: 0.6rem 1rem; border-radius: 20px; border-left: 2px solid #e6b91e;">
+          <span style="font-weight: 400; color: #b9c3d4; font-size: 0.85rem;">⭐ Важно: создано для поклонников игровой тематики</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Блок с описанием качества и атмосферы -->
+    <div class="highlight-box">
+      <p style="display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: center;">
+        <span style="background: #1e232c; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 700; color: #e6b91e; font-size: 0.9rem;">300 г/м²</span>
+        <span style="color: #c8d2e3;">Высокое качество печати, насыщенные цвета, детализация.</span>
+      </p>
+      <p style="margin-top: 0.7rem; font-size: 0.95rem; color: #bcc6d9;">
+        <strong>Вдохновлены атмосферой GTA VI</strong> — каждая открытка передаёт дух города, ночи и свободы. 
+        Идеально для коллекции или необычного подарка.
+      </p>
+      <div class="vinyl-decoration">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        <span style="opacity: 0.4;"></span><span style="opacity: 0.3;"></span><span style="opacity: 0.2;"></span>
+      </div>
+    </div>
+
+    <!-- Нижняя часть: CTA и команда -->
+    <div class="cta-section">
+      <div class="cta-text">
+        <span>✦</span> Набор в наличии <span style="background: #1e232c; color: #b9c3d4; border-color: #2f3642;">лимитированный</span>
+        <span style="margin-left: 0.3rem;">✧ 6 шт</span>
+      </div>
+      <div class="btn">
+        ⚡ Сохранить яркость
+      </div>
+    </div>
+
+    <!-- Футер с командой -->
+    <div class="footer-note">
+      <strong>Желаем приятных впечатлений и ярких моментов!</strong> 
+      <span style="display: inline-block; margin: 0 0.5rem;">·</span> 
+      Команда <strong style="color: #e6b91e; font-weight: 600;">Inc&Soul</strong>
+      <span style="display: block; margin-top: 0.4rem; font-size: 0.7rem; color: #4f5b6e;">
+        © 2026 · коллекционный набор GTA VI · 6 двусторонних открыток
+      </span>
+    </div>
+
+    <!-- микро-дизайн: "открытка" в углу -->
+    <div style="position: relative; height: 0; text-align: right; opacity: 0.1; pointer-events: none; font-family: 'Orbitron'; font-size: 4rem; letter-spacing: 0.2em; color: #e6b91e; transform: translateY(-0.8rem);">
+      ✦
+    </div>
+  </div>
+</body>
+</html>
